@@ -6,7 +6,7 @@ var port = "8080";
 
 i18n.configure({
   directory: "./locais",
-  extension: "js",
+  extension: ".js",
   defaultLocale: "pt-BR",
   locais: ["pt-BR", "en-US"],
   cookie: "lang",
@@ -14,13 +14,16 @@ i18n.configure({
 
 app.use(i18n.init);
 
-app.use((req, use, next) => {
+app.use((req, res, next) => {
   console.log(`Idiomas suportados: ${req.acceptsLanguages()}`);
+  let local = req.acceptsLanguages()[0];
+  req.setLocale(local);
+  res.setLocale(local);
   next();
 });
 
 app.get("/", (req, res) => {
-  res.send("Bem vindo");
+  res.send(res.__("hello"));
 });
 
 app.listen(port, () => {

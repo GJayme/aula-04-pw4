@@ -1,0 +1,8 @@
+{
+  "hello": "Hi!",
+  "bus": "bus",
+  "%s student": {
+    "one": "%s student",
+    "other": "%s students"
+  }
+}
